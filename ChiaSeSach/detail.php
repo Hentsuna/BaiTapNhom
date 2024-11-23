@@ -52,26 +52,40 @@
 
         $sqlr = "SELECT tennv, avatar, binh_luan, ngay_danh_gia
             FROM reviews join nhanvien on reviews.manv = nhanvien.manv
-            WHERE reviews.ma_sach = '$Masach'";
+            WHERE reviews.ma_sach = '$Masach' ORDER BY ngay_danh_gia DESC";
         $resultr = mysqli_query($conn, $sqlr);
+        
+            if(isset($_POST["binhluan"])) {
+                $query = "INSERT INTO `reviews` (`manv`, `ma_sach`, `xep_hang`, `binh_luan`, `ngay_danh_gia`)
+                 VALUES (?, ?, '5', ?, current_timestamp());";
+                $addbl = $conn->prepare($query);
+                $addbl->bind_param("iss",$userData["ma_nguoi_dung"], $Masach, $_POST["comment"]);
+                if($addbl->execute()) {
+                    
+                } else {
+                    
+                }
+            }
+        
+        ?>
+        <form method="post">
+        <textarea name="comment" rows="2" required></textarea><br>
+        <img src="./images/avatars/<?php echo $userData["avatar"]; ?>" alt="avatar người dùng">
+        <?php echo $userData["tennv"]; ?>
+        
+        <input type="submit" value="Đăng" name="binhluan">
+        </form>
+        <?php 
         if (mysqli_num_rows($resultr) <> 0){
             while ($rows = mysqli_fetch_array($resultr)) {
-                echo "<textarea rows='2'></textarea>";
-                echo "{$rows['avatar']}";
-                echo "<span>{$rows['avatar']}" . "{$rows['tennv']}" . "</span>";
-                echo "<span> - " . "{$row['ngay_danh_gia']}" . "</span>";
-                echo "<div>" . "htmlspecialchars({$row['binh_luan']})" . "</div>";
+                echo "<span>{$rows['tennv']}" . "</span>";
+                echo '<img src=' . $rows["avatar"] . '>'; 
+                echo "<span> - " . "{$rows['ngay_danh_gia']}" . "</span>";
+                echo "<div>" . htmlspecialchars($rows['binh_luan']) . "</div>";
                 echo "</div>";
             }
         }
         ?>
-        <!-- <form method="post">
-        <textarea name="comment" rows="2"><?php if(isset($_POST['comment'])) echo $_POST['comment']; ?></textarea><br>
-        <img src="./images/avatars/">$name
-        $binh_luan
-        $nagy -->
-
-        </form>
         </div>
     </main>
     <?php include "giaodien/footer.php"; ?>

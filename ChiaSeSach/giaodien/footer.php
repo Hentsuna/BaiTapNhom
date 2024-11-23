@@ -5,10 +5,10 @@
 
 <body>
     <div class="footer">
+                <small>
         <div class="container">
             <div class="col-md-4">
-                <div class="footer-title">LIÊN HỆ</div>
-                <p>
+                <div class="footer-title">LIÊN HỆ</div><p>
                     Mọi thông tin liên hệ xin vui lòng<br>
                     Gửi về hòm thư : tu.nt.63cntt@ntu.edu.vn<br>
                     Số điện thoại : 09620746<br>
@@ -58,6 +58,6 @@
                 }
                 ?>
             </div>
-        </div>
+        </div></small>
     </div>
 </body>

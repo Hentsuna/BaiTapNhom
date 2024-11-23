@@ -1,7 +1,6 @@
 <head>
     <link rel="stylesheet" href="cssfolder/header.css">
 </head>
-
 <body>
     <div class="navbar">
         <div class="container">
