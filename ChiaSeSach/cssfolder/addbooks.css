@@ -1,86 +1,100 @@
-/* Cơ bản cho form thêm sách */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f7fa;
     margin: 0;
     padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    /* Ảnh */
+    background-image: url("../images/background/rain.jpg");
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    background-color: #f4f4f4;
+}
+
+.row {
+    margin-top: 20px;
+    margin-bottom: 30px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-}
-
-.form-table {
     width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.form-table td {
-    padding: 10px;
-    font-size: 16px;
-}
-
-.form-table input,
-.form-table select,
-.form-table textarea {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.form-table input[type="file"] {
-    padding: 5px;
-}
-
-button.btn-addbook {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button.btn-addbook:hover {
-    background-color: #45a049;
-}
-
-button:focus {
-    outline: none;
-}
-
-.form-table label {
-    font-weight: bold;
-    color: #333;
-}
-
-input:valid,
-select:valid,
-textarea:valid {
-    border-color: green;
-}
-
-input[type="file"]:invalid {
-    border-color: red;
-}
-
-.alert {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-    text-align: center;
 }
 
 main {
-    padding: 20px 0;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f4f4f4;
+}
+
+h1 {
+    font-size: 24px;
+    color: #444;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-table {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.form-table td {
+    width: 48%;
+}
+
+label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-control, 
+input[type="file"], 
+textarea, 
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+select {
+    appearance: none;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath fill='%23000000' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E") no-repeat right 10px center;
+    background-size: 12px;
+    padding-right: 35px;
+}
+
+.btn-addbook {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-addbook:hover {
+    background-color: #218838;
+}
+
+.form-table td:last-child {
+    width: 100%;
+    text-align: center;
 }

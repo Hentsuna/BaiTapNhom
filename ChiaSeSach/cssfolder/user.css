@@ -3,6 +3,13 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    /* Ảnh */
+    background-image: url("../images/background/moon.jpg");
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    background-color: #f4f4f4;
 }
 
 .book-list {
@@ -79,10 +86,12 @@ body {
     text-align: center;
     margin: 10px auto;
     font-size: 16px;
+    color: #ddd;
 }
 
 .total-pages {
     text-align: center;
     font-weight: bold;
     margin-top: 10px;
+    color: #ddd;
 }

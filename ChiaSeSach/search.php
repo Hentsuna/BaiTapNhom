@@ -46,7 +46,7 @@
                 while ($rows = $result->fetch_assoc()) {
                     echo "<div class='book-item'>
                             <div class='book-title'>" . $rows['tieu_de'] . "</div>
-                            <img src='images/files/" . $rows['anh_bia'] . "' alt='Ảnh sách'>
+                            <img src='images/cover/" . $rows['anh_bia'] . "' alt='Ảnh sách'>
                             <div class='book-author'>Tác giả: <em>" . $rows['tac_gia'] . "</em></div>
                             <a class='btn-detail' href='detail.php?ma_sach=" . $rows['ma_sach'] . "'>Xem chi tiết</a>
                           </div>";

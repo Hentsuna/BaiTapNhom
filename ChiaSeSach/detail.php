@@ -65,13 +65,12 @@
                 } else {
                     
                 }
+                header("Location: detail.php?ma_sach=$Masach");
             }
         
         ?>
         <form method="post">
         <textarea name="comment" rows="2" required></textarea><br>
-        <img src="./images/avatars/<?php echo $userData["avatar"]; ?>" alt="avatar người dùng">
-        <?php echo $userData["tennv"]; ?>
         
         <input type="submit" value="Đăng" name="binhluan">
         </form>

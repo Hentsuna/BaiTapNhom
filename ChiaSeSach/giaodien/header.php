@@ -1,6 +1,7 @@
 <head>
     <link rel="stylesheet" href="cssfolder/header.css">
 </head>
+
 <body>
     <div class="navbar">
         <div class="container">
@@ -43,6 +44,7 @@
                                         <div class="dropdown-content">
                                             <a href="account.php">Trang cá nhân</a>
                                             <a href="addbooks.php">Thêm sách</a>
+                                            <a href="delbooks.php">Xoá sách</a>
                                             <form method="POST" class="logout-form">
                                                 <button type="submit" name="logout" class="logout-button">Đăng xuất</button>
                                             </form>

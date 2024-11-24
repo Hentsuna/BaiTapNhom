@@ -8,7 +8,7 @@ $offset = ($_GET['page'] - 1) * $rowsPerPage;
 $sql = 'SELECT ma_sach, tieu_de, anh_bia, tac_gia FROM books LIMIT ' . $offset . ', ' . $rowsPerPage;
 $result = mysqli_query($conn, $sql);
 
-echo "<div class='book-list'>"; 
+echo "<div class='book-list'>";
 
 $stt = 0;
 if (mysqli_num_rows($result) != 0) {
@@ -24,7 +24,7 @@ if (mysqli_num_rows($result) != 0) {
     }
 }
 
-echo "</div>"; 
+echo "</div>";
 
 $re = mysqli_query($conn, 'SELECT * FROM books');
 $numRows = mysqli_num_rows($re);
@@ -57,4 +57,3 @@ if ($_GET['page'] < $maxPage) {
 echo "</div>";
 
 echo "<p class='total-pages'>Tổng số trang: $maxPage</p>";
-?>
