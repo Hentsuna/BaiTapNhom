@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm sách</title>
+    <title>Cập nhật thông tin sách</title>
     <link rel="stylesheet" href="cssfolder/addbooks.css">
     <link rel="stylesheet" href="cssfolder/header.css">
     <link rel="stylesheet" href="cssfolder/footer.css">
@@ -111,7 +111,7 @@
         <div class="row">
             <section>
                 <form action="" method="POST" enctype="multipart/form-data">
-                    <h1 align="center">Thêm sách</h1>
+                    <h1 align="center">Cập nhật thông tin sách</h1>
                     <table class="form-table">
                         <input type="hidden" name="ma_sach" value="<?php echo $Masach ?>">
                         <tr>

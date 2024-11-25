@@ -26,7 +26,7 @@
             echo "<script>alert('Tên tài khoản đã tồn tại. Vui lòng chọn tên khác.');</script>";
         } else {
             $sql_insert_user = "INSERT INTO users (ten_tk, mat_khau) VALUES ('$ten_tk', '$mat_khau')";
-            $sql_insert_nhanvien = "INSERT INTO nhanvien (ten_tk, avatar) VALUES ('$ten_tk', './images/avatars/people.jpg')";
+            $sql_insert_nhanvien = "INSERT INTO nhanvien (tennv, ten_tk, avatar) VALUES ('$ten_tk', '$ten_tk', './images/avatars/people.jpg')";
             
             if (mysqli_query($conn, $sql_insert_user) && mysqli_query($conn, $sql_insert_nhanvien)) {
                 echo "<script>alert('Đăng ký thành công. Vui lòng đăng nhập.');</script>";

@@ -42,29 +42,24 @@
             if (isset($_POST['submit'])) {
 
                 if (empty($_FILES['avatarUpload']['name'])) {
-                    echo '<script>alert("$_FILES["avatarUpload"]["name"]")</script>';
                     $avatar = $row['avatar'];
                 } else {
-                    echo '<script>alert("$_FILES["avatarUpload"]["name"]")</script>';
-                    //$errors = array();
+                    $errors = array();
                     $file_name = $_FILES['avatarUpload']['name'];
-                    //$file_size = $_FILES['avatarUpload']['size'];
+                    $file_size = $_FILES['avatarUpload']['size'];
                     $file_tmp = $_FILES['avatarUpload']['tmp_name'];
-                    // $file_type = $_FILES['avatarUpload']['type'];
-                    // $file_ext = @strtolower(end(explode('.', $_FILES['avatarUpload']['name'])));
-                    //$expensions = array("jpeg", "jpg", "png");
+                    $file_ext = @strtolower(end(explode('.', $_FILES['avatarUpload']['name'])));
+                    $expensions = array("jpeg", "jpg", "png");
 
-                    // if (in_array($file_ext, $expensions) === false) {
-                    //     $errors[] = "Don't accept image files with this extension, please choose JPEG or PNG.";
-                    // }
-                    // if ($file_size > 2097152) {
-                    //     $errors[] = 'File size should be 2MB';
-                    // }
+                    if (in_array($file_ext, $expensions) === false) {
+                        $errors[] = "Don't accept image files with this extension, please choose JPEG or PNG.";
+                    }
+                    if ($file_size > 2097152) {
+                        $errors[] = 'File size should be 2MB';
+                    }
                     if (empty($errors) == true) {
                         move_uploaded_file($file_tmp, "D:\\xampp\\htdocs\\BaiTapNhom\\ChiaSeSach\\images\\avatars\\" . $file_name);
                         $avatar = "./images/avatars/" . $file_name;
-                        // } else {
-                        //     print_r($errors);
                     }
                 }
 
@@ -81,19 +76,16 @@
                     ngay_sinh = '$ngaysinh', dia_chi = '$diachi', so_dien_thoai = '$sodienthoai', avatar = '$avatar'
                     WHERE manv = '$manv'";
                 if (mysqli_query($conn, $sql)) {
-                    echo "Cập nhật thành công!";
+                    echo '<script>alert("Cập nhật thông tin thành công");</script>';
                 } else {
-                    echo "Lỗi khi cập nhật dữ liệu: " . mysqli_error($conn);
+                    echo '<script>alert("Lỗi xảy ra khi sửa đổi Avatar ' . mysqli_error($conn) . '");</script>';
                 }
-                // } else {
-                //     if (mysqli_num_rows($result) > 0) {
-
-                //     }
             header("Location: account.php");
             }
             ?>
             <section>
                 <form action="" method="POST" enctype="multipart/form-data">
+                <h1 align="center">Thông tin cá nhân</h1>
                     <table>
                         <tr>
                             <td><input type="hidden" name="manv" value="<?php echo $manv; ?>"></td>
