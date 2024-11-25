@@ -46,7 +46,7 @@
 
         // file anh
         if (empty($_FILES['anh_bia']['name'])) {
-            $anh_bia_path = $Data['anh_bia'];
+            $anh_bia_name = $Data['anh_bia'];
         } else {
             $anh_bia = $_FILES['anh_bia']['name'];
             $file_tmp = $_FILES['anh_bia']['tmp_name'];
@@ -62,7 +62,7 @@
             }
             if (empty($errors)) {
                 $anh_bia_name = basename($anh_bia);
-                $anh_bia_path =  $anh_bia_name;
+                $anh_bia_path =  "./images/" . $anh_bia_name;
                 move_uploaded_file($file_tmp, $anh_bia_path);
             }
         }
@@ -90,7 +90,7 @@
         // SQL 
         if (empty($errors)) {
             $sql = "UPDATE books SET tieu_de = '$tieu_de', tac_gia = '$tac_gia', ma_the_loai = '$ma_the_loai',
-                    nam_xuat_ban = '$nam_xuat_ban', mo_ta = '$mo_ta', anh_bia = '$anh_bia_path', link_file = '$link_file_url'
+                    nam_xuat_ban = '$nam_xuat_ban', mo_ta = '$mo_ta', anh_bia = '$anh_bia_name', link_file = '$link_file_url'
                     WHERE ma_sach = '$Masach'";
 
             if (mysqli_query($conn, $sql)) {
