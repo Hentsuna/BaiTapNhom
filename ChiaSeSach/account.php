@@ -20,7 +20,7 @@
     <main>
         <div class="row">
             <?php
-            $ten_tk = $_SESSION['users'];
+            $ten_tk = isset($_SESSION['users']) ? $_SESSION['users'] : null;
 
             $sql = "SELECT * 
             FROM nhanvien 
@@ -62,7 +62,7 @@
                     // }
                     if (empty($errors) == true) {
                         move_uploaded_file($file_tmp, "D:\\xampp\\htdocs\\BaiTapNhom\\ChiaSeSach\\images\\avatars\\" . $file_name);
-                        $avatar = "http://localhost/BaiTapNhom/ChiaSeSach/images/avatars/" . $file_name;
+                        $avatar = "./images/avatars/" . $file_name;
                         // } else {
                         //     print_r($errors);
                     }

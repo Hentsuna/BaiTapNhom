@@ -21,7 +21,16 @@
     require "connect.php";
     include "giaodien/header.php";
 
-    $info = "SELECT ma_sach, tieu_de, tac_gia, anh_bia FROM books ORDER BY tieu_de, tac_gia";
+    $userName = isset($_SESSION['users']) ? $_SESSION['users'] : null;
+            $userData = mysqli_fetch_assoc(mysqli_query(
+                $conn,
+                "   SELECT nhanvien.manv
+                                FROM nhanvien 
+                                LEFT JOIN users ON users.ma_nguoi_dung = nhanvien.manv 
+                                WHERE users.ten_tk = '$userName'"
+            ));
+
+    $info = "SELECT ma_sach, tieu_de, tac_gia, anh_bia FROM books where manv = {$userData['manv']} ORDER BY tieu_de, tac_gia";
     $result = mysqli_query($conn, $info);
 
     if (isset($_GET['ma_sach'])) {
@@ -55,7 +64,7 @@
                             echo "<td>" . $rows['tac_gia'] . "</td>";
                             echo "<td><img src='images/cover/" . $rows['anh_bia'] . "' alt='Ảnh bìa'></td>";
                             echo "<td>
-                                <a href='#' class='btn btn-info'>Sửa</a>
+                                <a href='editbooks.php?ma_sach=" . $rows['ma_sach'] .  "' class='btn btn-info'>Sửa</a>
                                 <a onclick=\"return confirm('Bạn có chắc chắn muốn xoá sách này không?');\" 
                                    href='delbooks.php?ma_sach=" . $rows['ma_sach'] . "' class='btn btn-danger'>Xoá</a>
                               </td>";

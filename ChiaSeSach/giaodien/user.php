@@ -30,7 +30,7 @@ $re = mysqli_query($conn, 'SELECT * FROM books');
 $numRows = mysqli_num_rows($re);
 $maxPage = ceil($numRows / $rowsPerPage);
 
-echo "<p class='current-page'>Trang hiện tại: " . $_GET['page'] . "</p>";
+echo "<p class='current-page'></p>";
 
 echo "<div class='pagination'>";
 
@@ -43,7 +43,13 @@ if ($_GET['page'] > 1) {
 }
 
 for ($i = 1; $i <= $maxPage; $i++) {
-    echo "<button onclick=\"window.location.href='" . $_SERVER['PHP_SELF'] . "?page=$i'\">Trang $i</button> ";
+    if ($i == $_GET['page']) {
+        // Nút của trang hiện tại
+        echo "<button style=\"background-color: blue; color: white;\">Trang $i</button> ";
+    } else {
+        // Các nút khác
+        echo "<button onclick=\"window.location.href='" . $_SERVER['PHP_SELF'] . "?page=$i'\">Trang $i</button> ";
+    }
 }
 
 if ($_GET['page'] < $maxPage) {
@@ -56,4 +62,4 @@ if ($_GET['page'] < $maxPage) {
 
 echo "</div>";
 
-echo "<p class='total-pages'>Tổng số trang: $maxPage</p>";
+echo "<p class='total-pages'></p>";

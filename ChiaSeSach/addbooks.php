@@ -17,8 +17,13 @@
     include "giaodien/header.php";
 
     if (isset($_POST['submit'])) {
-        $timestamp = time();
-        $ma_sach = $timestamp . rand(1, 9);
+        // $timestamp = time();
+        // $ma_sach = $timestamp . rand(1, 9);
+        do {
+            $timestamp = time();
+            $ma_sach = $timestamp . rand(1, 999);
+            $result = mysqli_query($conn, "SELECT * FROM books WHERE ma_sach = '$ma_sach'");
+        } while (mysqli_num_rows($result) > 0);
 
         $tieu_de = $_POST['tieu_de'];
         $tac_gia = $_POST['tac_gia'];
@@ -53,7 +58,7 @@
 
         if ($file_ext == "pdf") {
             $link_file_path = "files/" . $link_file;
-            $link_file_url = "http://localhost/BaiTapNhom/ChiaSeSach/files/" . $link_file;
+            $link_file_url = "./files/" . $link_file;
             if (move_uploaded_file($file_tmp, $link_file_path)) {
             } else {
                 $errors[] = "Lỗi khi tải file PDF lên.";
@@ -63,9 +68,17 @@
         }
 
         // SQL 
+        $userName = isset($_SESSION['users']) ? $_SESSION['users'] : null;
+            $userData = mysqli_fetch_assoc(mysqli_query(
+                $conn,
+                "   SELECT nhanvien.manv
+                                FROM nhanvien 
+                                LEFT JOIN users ON users.ma_nguoi_dung = nhanvien.manv 
+                                WHERE users.ten_tk = '$userName'"
+            ));
         if (empty($errors)) {
-            $sql = "INSERT INTO books (ma_sach, tieu_de, tac_gia, ma_the_loai, nam_xuat_ban, mo_ta, anh_bia, link_file)
-            VALUES ('$ma_sach', '$tieu_de', '$tac_gia', '$ma_the_loai', '$nam_xuat_ban', '$mo_ta', '$anh_bia_name', '$link_file_url')";
+            $sql = "INSERT INTO books (ma_sach, manv, tieu_de, tac_gia, ma_the_loai, nam_xuat_ban, mo_ta, anh_bia, link_file)
+            VALUES ('$ma_sach','{$userData["manv"]}', '$tieu_de', '$tac_gia', '$ma_the_loai', '$nam_xuat_ban', '$mo_ta', '$anh_bia_name', '$link_file_url')";
 
             if (mysqli_query($conn, $sql)) {
                 echo '<script>alert("Sách đã được thêm thành công");</script>';
